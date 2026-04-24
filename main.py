@@ -22,7 +22,7 @@ tSpace = np.linspace(-N(P)/2, N(P)/2, 100) # time values to plot over
 # Waveform functions (with amplitude A and period P)
 saw = lambda t : 2*A/P * t # Sawtooth wave defined over [-P/2, P/2]
 saw_sym = saw(t)
-square_sym = Piecewise((A, sin(2 * pi * t / P) >= 0), (-A, True))
+square_sym = Piecewise((A, t >= 0), (-A, True))
 square = lambdify(t, square_sym)
 
 
@@ -33,11 +33,13 @@ square = lambdify(t, square_sym)
 
 
 # Sawtooth Transform
-sawTerms = [fourier.a0(saw_sym, P)]
+a0 = fourier.a0(saw_sym, P)
 an = fourier.an(saw_sym, P)
 bn = fourier.bn(saw_sym, P)
-print(an)
-print(bn)
+
+print(f'Sawtooth: a0: {a0}, an: {an}, bn: {bn}')
+
+sawTerms = [a0]
 errors = []
 i = 1
 thresholdNum = 0
@@ -92,11 +94,13 @@ plt.tight_layout()
 
 
 # Square Wave Transform
-squareTerms = [fourier.a0(square_sym, P)]
+a0 = fourier.a0(square_sym, P)
 an = fourier.an(square_sym, P)
 bn = fourier.bn(square_sym, P)
-print(an)
-print(bn)
+
+print(f'Square: a0: {a0}, an: {an}, bn: {bn}')
+
+squareTerms = [a0]
 errors = []
 i = 1
 thresholdNum = 0
