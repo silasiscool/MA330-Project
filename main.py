@@ -54,7 +54,6 @@ while True:
     sawSeries = sum(sawTerms)
     error = NRMSE(saw_sym, sawSeries, t, P, A)
     errors.append(error)
-    # print(f"n: {i}, Error: {error}, Current Threshold: {errorThresholds[thresholdNum]}")
 
     if error <= errorThresholds[thresholdNum]:
         thresholdNs.append(i)
@@ -115,7 +114,6 @@ while True:
     squareSeries = sum(squareTerms)
     error = NRMSE(square_sym, squareSeries, t, P, A)
     errors.append(error)
-    # print(f"n: {i}, Error: {error}, Current Threshold: {errorThresholds[thresholdNum]}")
 
     if error <= errorThresholds[thresholdNum]:
         thresholdNs.append(i)
